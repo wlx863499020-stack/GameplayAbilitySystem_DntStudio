@@ -3,12 +3,18 @@
 
 #include "Character/DntEnemy.h"
 
+#include "AbilitySystem/DntAbilitySystemComponent.h"
+#include "AbilitySystem/DntAttributeSet.h"
 #include "DntStudio/DntStudio.h"
 
 ADntEnemy::ADntEnemy()
 {
 	GetMesh()->SetCollisionResponseToChannel(ECC_Visibility,ECR_Block);
 	
+	AbilitySystemComponent = CreateDefaultSubobject<UDntAbilitySystemComponent>("AbilitySystemComponent");
+	AbilitySystemComponent->SetIsReplicated(true);
+
+	AttributeSet = CreateDefaultSubobject<UDntAttributeSet>("AttributeSet");
 }
 
 void ADntEnemy::HighlightActor()

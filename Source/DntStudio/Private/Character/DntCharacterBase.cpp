@@ -12,7 +12,12 @@ ADntCharacterBase::ADntCharacterBase()
 	Weapon ->SetCollisionEnabled(ECollisionEnabled::NoCollision);
 }
 
-void ADntCharacterBase::BeginPlay()
+ UAbilitySystemComponent* ADntCharacterBase::GetAbilitySystemComponent() const
+ {
+	return AbilitySystemComponent;
+ }
+
+ void ADntCharacterBase::BeginPlay()
 {
 	Super::BeginPlay();
 	

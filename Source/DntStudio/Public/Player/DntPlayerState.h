@@ -4,30 +4,29 @@
 
 #include "CoreMinimal.h"
 #include "AbilitySystemInterface.h"
-#include "GameFramework/Character.h"
-#include "DntCharacterBase.generated.h"
+#include "GameFramework/PlayerState.h"
+#include "DntPlayerState.generated.h"
+
 
 class UAbilitySystemComponent;
 class UAttributeSet;
 
+/**
+ * 
+ */
 UCLASS()
-class DNTSTUDIO_API ADntCharacterBase : public ACharacter,public IAbilitySystemInterface
+class DNTSTUDIO_API ADntPlayerState : public APlayerState, public IAbilitySystemInterface
 {
 	GENERATED_BODY()
-
 public:
-	ADntCharacterBase();
+	ADntPlayerState();
 	virtual UAbilitySystemComponent* GetAbilitySystemComponent() const override;
 	UAttributeSet* GetAttributeSet() const{return AttributeSet;}
 protected:
-	virtual void BeginPlay() override;
-
-	UPROPERTY(EditAnywhere,Category = "Combat")
-	TObjectPtr<USkeletalMeshComponent> Weapon;
-	
 	UPROPERTY()
 	TObjectPtr<UAbilitySystemComponent> AbilitySystemComponent;
 	
 	UPROPERTY()
 	TObjectPtr<UAttributeSet> AttributeSet;
+	
 };
