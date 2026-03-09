@@ -23,3 +23,7 @@ ADntCharacterBase::ADntCharacterBase()
 	
 }
 
+ void ADntCharacterBase::InitAbilityActorInfo()
+ {
+ }
+

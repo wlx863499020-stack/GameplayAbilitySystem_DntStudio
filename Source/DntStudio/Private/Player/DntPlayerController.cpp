@@ -83,8 +83,10 @@ void ADntPlayerController::BeginPlay()
 	check(DntContext);
 	
 	UEnhancedInputLocalPlayerSubsystem* Subsystem = ULocalPlayer::GetSubsystem<UEnhancedInputLocalPlayerSubsystem>(GetLocalPlayer());
-	check(Subsystem);
-	Subsystem ->AddMappingContext(DntContext, 0);
+	if (Subsystem)
+	{
+		Subsystem ->AddMappingContext(DntContext, 0);
+	}
 	//鼠标设置
 	bShowMouseCursor = true;
 	DefaultMouseCursor = EMouseCursor::Default;
