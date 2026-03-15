@@ -5,13 +5,15 @@
 #include "CoreMinimal.h"
 #include "AbilitySystemInterface.h"
 #include "GameFramework/Character.h"
+#include "Interaction/CombatInterface.h"
 #include "DntCharacterBase.generated.h"
 
 class UAbilitySystemComponent;
 class UAttributeSet;
+class UGameplayEffect;
 
 UCLASS()
-class DNTSTUDIO_API ADntCharacterBase : public ACharacter,public IAbilitySystemInterface
+class DNTSTUDIO_API ADntCharacterBase : public ACharacter,public IAbilitySystemInterface, public ICombatInterface
 {
 	GENERATED_BODY()
 
@@ -32,4 +34,21 @@ protected:
 	TObjectPtr<UAttributeSet> AttributeSet;
 	
 	virtual void InitAbilityActorInfo();
+	
+	UPROPERTY(BlueprintReadOnly, EditAnywhere, Category = "Attributes")
+	TSubclassOf<UGameplayEffect> DefualtPrimaryAttributes;
+	
+	UPROPERTY(BlueprintReadOnly, EditAnywhere, Category = "Attributes")
+	TSubclassOf<UGameplayEffect> DefualtSecondaryAttributes;
+	
+	UPROPERTY(BlueprintReadOnly, EditAnywhere, Category = "Attributes")
+	TSubclassOf<UGameplayEffect> DefualtVitalAttributes;
+	
+	
+
+	
+	void ApplyEffectToSelf(TSubclassOf<UGameplayEffect> GameplayEffectClass, float Level) const;
+	void InitializeDefaultAttributes() const;
+
+
 };

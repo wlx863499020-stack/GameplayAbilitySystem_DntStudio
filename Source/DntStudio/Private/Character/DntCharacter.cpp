@@ -39,6 +39,13 @@ void ADntCharacter::OnRep_PlayerState()
     InitAbilityActorInfo();
 }
 
+int32 ADntCharacter::GetPlayerLevel()
+{
+	const ADntPlayerState* DntPlayerState = GetPlayerState<ADntPlayerState>();
+	check(DntPlayerState);
+	return DntPlayerState->GetPlayerLevel();
+}
+
 void ADntCharacter::InitAbilityActorInfo()
 {
 	ADntPlayerState* DntPlayerState = GetPlayerState<ADntPlayerState>();
@@ -55,4 +62,5 @@ void ADntCharacter::InitAbilityActorInfo()
 			DntHUD->InitOverlay(DntPlayerController,DntPlayerState,AbilitySystemComponent, AttributeSet);
 		}
 	}
+	InitializeDefaultAttributes();
 }

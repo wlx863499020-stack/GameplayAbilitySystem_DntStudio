@@ -3,6 +3,7 @@
 
 #include "Character/DntEnemy.h"
 
+#include "EditorDirectories.h"
 #include "AbilitySystem/DntAbilitySystemComponent.h"
 #include "AbilitySystem/DntAttributeSet.h"
 #include "DntStudio/DntStudio.h"
@@ -30,6 +31,11 @@ void ADntEnemy::UnHighlightActor()
 {
 	GetMesh()->SetRenderCustomDepth(false);
 	Weapon->SetRenderCustomDepth(false);
+}
+
+int32 ADntEnemy::GetPlayerLevel()
+{
+	return Level;
 }
 
 void ADntEnemy::BeginPlay()

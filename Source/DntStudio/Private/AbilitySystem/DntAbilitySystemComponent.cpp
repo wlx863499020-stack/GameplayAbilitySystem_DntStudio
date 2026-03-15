@@ -13,10 +13,6 @@ void UDntAbilitySystemComponent::EffectApplied(UAbilitySystemComponent* AbilityS
 {
 	FGameplayTagContainer TagContainer;
 	EffectSpec.GetAllAssetTags(TagContainer);
-	for (const FGameplayTag& Tag : TagContainer)
-	{
-		//TODO:
-		const FString Msg = FString ::Printf(TEXT("GE Tag:%s"), *Tag.ToString());
-		GEngine->AddOnScreenDebugMessage(-1, 8.f, FColor::Blue,Msg);
-	}
+	
+	EffectAssetTags.Broadcast(TagContainer);
 }
