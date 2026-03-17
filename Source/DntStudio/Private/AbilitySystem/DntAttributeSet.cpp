@@ -7,13 +7,32 @@
 #include "GameFramework/Character.h"
 #include "Net/UnrealNetwork.h"
 #include "GameplayEffectExtension.h"
+#include "DntGameplayTags.h"
 
 UDntAttributeSet::UDntAttributeSet()
 {
+	const FDntGameplayTags& GameplayTags = FDntGameplayTags::Get();
+	
+
+	// 核心五维 + 精神力
+	TagsToAttributes.Add(GameplayTags.Attributes_Primary_Strength, GetStrengthAttribute);
+	TagsToAttributes.Add(GameplayTags.Attributes_Primary_Intelligence, GetIntelligenceAttribute);
+	TagsToAttributes.Add(GameplayTags.Attributes_Primary_Resilience, GetResilienceAttribute);
+	TagsToAttributes.Add(GameplayTags.Attributes_Primary_Vigor, GetVigorAttribute);
+	TagsToAttributes.Add(GameplayTags.Attributes_Primary_ManaVigor, GetManaVigorAttribute);
+	TagsToAttributes.Add(GameplayTags.Attributes_Primary_Luck, GetLuckAttribute);
+	TagsToAttributes.Add(GameplayTags.Attributes_Primary_Spirit, GetSpiritAttribute);
+
+	// 衍生战斗属性
+	TagsToAttributes.Add(GameplayTags.Attributes_Secondary_MaxHealth, GetMaxHealthAttribute);
+	TagsToAttributes.Add(GameplayTags.Attributes_Secondary_MaxMana, GetMaxManaAttribute);
 	
 	
 }
     //*********************************************************************************************
+
+    ////TagsToAttributes.Add(GameplayTags.Attributes_Primary_Strength,GetStrengthAttribute);
+
     //DOREPLIFETIME_CONDITION_NOTIFY(UDntAttributeSet,Health,COND_None,REPNOTIFY_Always);
 
     //void UDntAttributeSet::OnRep_Health(const FGameplayAttributeData& OldHealth) const
@@ -402,3 +421,5 @@ void UDntAttributeSet::OnRep_Tenacity(const FGameplayAttributeData& OldTenacity)
 {
 	GAMEPLAYATTRIBUTE_REPNOTIFY(UDntAttributeSet, Tenacity, OldTenacity);
 }
+
+

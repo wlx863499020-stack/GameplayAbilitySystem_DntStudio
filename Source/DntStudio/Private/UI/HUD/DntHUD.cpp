@@ -4,6 +4,7 @@
 #include "UI/HUD/DntHUD.h"
 
 #include "UI/Widget/DntUserWidget.h"
+#include "UI/WidgetController/AttributeMenuWidgetController.h"
 #include "UI/WidgetController/OverlayWidgetController.h"
 
 UOverlayWidgetController* ADntHUD::GetOverlayWidgetController(const FWidgetControllerParams& WCParams)
@@ -13,9 +14,20 @@ UOverlayWidgetController* ADntHUD::GetOverlayWidgetController(const FWidgetContr
 		OverlayWidgetController = NewObject<UOverlayWidgetController>(this,OverlayWidgetControllerClass);
 		OverlayWidgetController->SetWidgetControllerParams(WCParams);
 		OverlayWidgetController->BindCallBacksToDependencies();
-		return OverlayWidgetController;
 	}
 	return OverlayWidgetController;
+}
+
+UAttributeMenuWidgetController* ADntHUD::GetAttributeMenuWidgetController(const FWidgetControllerParams& WCParams)
+{
+	if (AttributeMenuWidgetController == nullptr)
+	{
+		AttributeMenuWidgetController = NewObject<UAttributeMenuWidgetController>(this , AttributeMenuWidgetControllerClass);
+		AttributeMenuWidgetController->SetWidgetControllerParams(WCParams);
+		AttributeMenuWidgetController->BindCallBacksToDependencies();
+		
+	}
+	return AttributeMenuWidgetController;
 }
 
 void ADntHUD::InitOverlay(APlayerController* PC, APlayerState* PS, UAbilitySystemComponent* ASC, UAttributeSet* AS)

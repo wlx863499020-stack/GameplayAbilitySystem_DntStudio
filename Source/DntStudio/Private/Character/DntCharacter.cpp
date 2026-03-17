@@ -28,7 +28,7 @@ void ADntCharacter::PossessedBy(AController* NewController)
 	
 //init ability actor info for the server
 	 InitAbilityActorInfo();
-
+	AddCharacterAbilities();
 }
 
 void ADntCharacter::OnRep_PlayerState()

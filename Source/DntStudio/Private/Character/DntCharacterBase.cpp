@@ -3,8 +3,9 @@
 
 #include "Character/DntCharacterBase.h"
 #include "AbilitySystemComponent.h"
+#include "AbilitySystem/DntAbilitySystemComponent.h"
 
-ADntCharacterBase::ADntCharacterBase()
+ ADntCharacterBase::ADntCharacterBase()
 {
 	PrimaryActorTick.bCanEverTick = false;
 
@@ -43,6 +44,14 @@ ADntCharacterBase::ADntCharacterBase()
 	ApplyEffectToSelf(DefualtPrimaryAttributes,1.f);
 	ApplyEffectToSelf(DefualtSecondaryAttributes,1.f);
 	ApplyEffectToSelf(DefualtVitalAttributes,1.f);
+ }
+
+ void ADntCharacterBase::AddCharacterAbilities()
+ {
+	UDntAbilitySystemComponent* DntASC = CastChecked<UDntAbilitySystemComponent>(AbilitySystemComponent);
+	if (!HasAuthority()) return;
+	
+	DntASC->AddCharacterAbilities(StartupAbilities);
  }
 
 

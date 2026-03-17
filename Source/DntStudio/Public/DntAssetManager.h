@@ -14,4 +14,10 @@ class DNTSTUDIO_API UDntAssetManager : public UAssetManager
 {
 	GENERATED_BODY()
 	
+	static UDntAssetManager& Get();
+	
+protected:
+	
+	virtual void StartInitialLoading() override;
+	
 };
