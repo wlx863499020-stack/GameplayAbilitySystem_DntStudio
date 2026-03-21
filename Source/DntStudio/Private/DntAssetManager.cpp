@@ -2,6 +2,8 @@
 
 
 #include "DntAssetManager.h"
+
+#include "AbilitySystemComponent.h"
 #include "DntGameplayTags.h"
 
 UDntAssetManager& UDntAssetManager::Get()
@@ -15,9 +17,7 @@ UDntAssetManager& UDntAssetManager::Get()
 void UDntAssetManager::StartInitialLoading()
 {
 	Super::StartInitialLoading();
-	
-	UE_LOG(LogTemp, Warning, TEXT("====== DntAssetManager is Running! ======")); 
-	
 	FDntGameplayTags::InitializeNativeGameplayTags();
+	//UAbilitySystemGlobals::Get().InitGlobalData();
 }
 

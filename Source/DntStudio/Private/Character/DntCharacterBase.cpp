@@ -4,10 +4,17 @@
 #include "Character/DntCharacterBase.h"
 #include "AbilitySystemComponent.h"
 #include "AbilitySystem/DntAbilitySystemComponent.h"
+#include "Components/CapsuleComponent.h"
+#include "DntStudio/DntStudio.h"
 
  ADntCharacterBase::ADntCharacterBase()
 {
 	PrimaryActorTick.bCanEverTick = false;
+ 	
+ 	GetCapsuleComponent()->SetCollisionResponseToChannel(ECC_Camera,ECR_Ignore);
+ 	GetMesh()->SetCollisionResponseToChannel(ECC_Camera,ECR_Ignore);
+ 	GetMesh()->SetCollisionResponseToChannel(ECC_Projectile,ECR_Overlap);
+ 	GetMesh()->SetGenerateOverlapEvents(true);
 
 	Weapon = CreateDefaultSubobject<USkeletalMeshComponent>("Weapon");
 	Weapon ->SetupAttachment(GetMesh(),FName("WeaponHandSocket"));
@@ -24,6 +31,12 @@
 	Super::BeginPlay();
 	
 }
+
+ FVector ADntCharacterBase::GetCombatSocketLocation()
+ {
+ 	check(Weapon);
+ 	return Weapon->GetSocketLocation(WeaponTipSocketName);
+ }
 
  void ADntCharacterBase::InitAbilityActorInfo()
  {

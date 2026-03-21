@@ -77,11 +77,9 @@ void ADntPlayerController::AbilityInputTagReleased(FGameplayTag InputTag)
 		if (GetASC()) GetASC()->AbilityInputTagReleased(InputTag);
 		return;
 	}
-	if (bTargeting)
-	{
-		if (GetASC()) GetASC()->AbilityInputTagReleased(InputTag);
-	}
-	else
+	if (GetASC()) GetASC()->AbilityInputTagReleased(InputTag);
+	
+	if (!bTargeting && !bShiftKeyDown)
 	{
 		const APawn* ControlledPawn = GetPawn();
 		if (FollowTime <= ShortPressThreshold && ControlledPawn)
@@ -110,7 +108,7 @@ void ADntPlayerController::AbilityInputTagHeld(FGameplayTag InputTag)
 		return;
 	}
 	
-	if (bTargeting)
+	if (bTargeting || bShiftKeyDown)
 	{
 		if (GetASC()) GetASC()->AbilityInputTagHeld(InputTag);
 	}
@@ -126,11 +124,6 @@ void ADntPlayerController::AbilityInputTagHeld(FGameplayTag InputTag)
 		}
 	}
 }
-
-
-
-
-
 
 
 
@@ -172,6 +165,8 @@ void ADntPlayerController::SetupInputComponent()
 	
 	UDntInputComponent* DntInputComponent = CastChecked<UDntInputComponent>(InputComponent);
 	DntInputComponent->BindAction(MoveAction,ETriggerEvent::Triggered,this,&ADntPlayerController::Move);
+	DntInputComponent->BindAction(ShiftAction,ETriggerEvent::Started,this,&ADntPlayerController::ShiftPressed);
+	DntInputComponent->BindAction(ShiftAction,ETriggerEvent::Completed,this,&ADntPlayerController::ShiftReleased);
 	DntInputComponent->BindAbilityActions(InputConfig, this, &ThisClass::AbilityInputTagPressed, &ThisClass::AbilityInputTagReleased, &ThisClass::AbilityInputTagHeld);
 }
 

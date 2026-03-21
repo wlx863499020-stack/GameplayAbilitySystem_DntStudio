@@ -40,10 +40,10 @@ public:
 	FGameplayTag Attributes_Secondary_CritChance;
 	FGameplayTag Attributes_Secondary_MagicalCritChance;
 	FGameplayTag Attributes_Secondary_CritDamage;
-	FGameplayTag Attributes_Secondary_LifeSteal;
+	FGameplayTag Attributes_Secondary_LifeSteal;//
 	FGameplayTag Attributes_Secondary_Omnivamp;
 	FGameplayTag Attributes_Secondary_SpellVamp;
-	FGameplayTag Attributes_Secondary_MoveSpeed;
+	FGameplayTag Attributes_Secondary_MoveSpeed;//
 	FGameplayTag Attributes_Secondary_AttackSpeed;
 	FGameplayTag Attributes_Secondary_AttackRange;
 	FGameplayTag Attributes_Secondary_AbilityHaste;

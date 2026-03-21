@@ -13,7 +13,7 @@ class UAttributeSet;
 class UGameplayEffect;
 class UGameplayAbility;
 
-UCLASS()
+UCLASS(Abstract)
 class DNTSTUDIO_API ADntCharacterBase : public ACharacter,public IAbilitySystemInterface, public ICombatInterface
 {
 	GENERATED_BODY()
@@ -27,6 +27,11 @@ protected:
 
 	UPROPERTY(EditAnywhere,Category = "Combat")
 	TObjectPtr<USkeletalMeshComponent> Weapon;
+	
+	UPROPERTY(EditAnywhere,Category = "Combat")
+	FName WeaponTipSocketName;
+	
+	virtual FVector GetCombatSocketLocation() override;
 	
 	UPROPERTY()
 	TObjectPtr<UAbilitySystemComponent> AbilitySystemComponent;
