@@ -1,0 +1,47 @@
+# --- 你提供的基础项 ---
+Binaries/
+DerivedDataCache/
+Intermediate/
+Saved/
+Build/
+.vscode/
+.vs/
+*.vc.db
+*.opensdf
+*.opendb
+*.sdf
+*.sln
+*.suo
+*.xcodeproj
+*.xcworkspace
+.idea/
+*.user
+Plugins/Developer/
+
+# --- UE5 C++/Blueprint 补充 ---
+Source/*.target.cs
+Source/*.Target.cs
+/FileOpenOrder/
+
+# --- Cursor / VS Code 深度支持 ---
+.history/
+.cursorrules
+# 如果你希望 AI 的规则在多端同步，可以把上面的 .cursorrules 前面加个 # 注释掉
+
+# --- 操作系统与编译器残留 ---
+.DS_Store
+Thumbs.db
+*.pdb
+*.obj
+*.patch
+*.ipch
+
+# --- 额外建议添加（防止大文件误传） ---
+# 虚幻引擎自动生成的项目文件缓存
+*.Modules
+/DerivedDataCache/
+/FileOpenOrder/
+
+# 这里的设置会自动忽略所有插件下的二进制和中间文件，但保留插件源码
+Plugins/*/Binaries/
+Plugins/*/Intermediate/
