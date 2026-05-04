@@ -1,21 +1,52 @@
-# 排除虚幻引擎自动生成的文件夹
+# ==============================================================================
+# DntStudio - UE5 纯 C++ 代码库专用 .gitignore
+# 核心原则：仅保留 Source、Config、.uproject 文件，拦截一切资产与编译产物
+# ==============================================================================
+
+# 1. 虚幻引擎临时目录、缓存与编译产物（绝对拦截）
 Binaries/
 Intermediate/
 Saved/
 DerivedDataCache/
 Build/
 
-# 排除资源文件夹 (这是你最关心的)
+# 2. 内容与资产文件夹（严格阻断所有二进制资源）
 Content/
-Plugins/
+*.uasset
+*.umap
 
-# 排除 IDE 和临时文件
+# 3. 插件目录下的非代码部分（如果你有自定义插件）
+Plugins/**/Binaries/
+Plugins/**/Intermediate/
+Plugins/**/Saved/
+Plugins/**/Content/
+Plugins/**/DerivedDataCache/
+
+# 4. 各种 IDE 生成文件与项目缓存（无需上传，可通过项目右键 Generate 重新生成）
 .vs/
 .idea/
 .vscode/
 *.sln
-*.db
+*.suo
 *.pdb
+*.xcworkspace
+*.xcodeproj/
+cmake-build-*/
+compile_commands.json
 
-# 排除数据文件夹 (如果有)
-Data/
+# 5. 操作系统自动生成的垃圾文件
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# 6. 其他潜在的二进制文件/大文件
+*.log
+*.zip
+*.rar
+*.tar.gz
+*.obj
+*.o
+*.a
+*.lib
+*.dll
+*.exe
